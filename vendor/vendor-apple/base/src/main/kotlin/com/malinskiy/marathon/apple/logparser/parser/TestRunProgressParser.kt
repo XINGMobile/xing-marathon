@@ -30,7 +30,10 @@ class TestRunProgressParser(
      */
     val FAILING_TEST_MATCHER = "(/.+:\\d+):\\serror:\\s[\\+\\-]\\[(.*)\\s(.*)\\]\\s:(\\s.*)".toRegex()
 
-    val TIMEOUT_TEST_MATCHER = """Test Case '-\[(.+) (.+)]' exceeded execution time allowance of (\d+) minutes\. The test may have hung.*""".toRegex()
+    /**
+     * Timeout case from https://developer.apple.com/documentation/xctest/xctestcase/3526064-executiontimeallowance
+     */
+    val TIMEOUT_TEST_MATCHER = """Test Case '-\[(.+) (.+)]' exceeded execution time allowance of (\d+) minutes*\. The test may have hung.*""".toRegex()
     
     private var failingTestLine: String? = null
     
